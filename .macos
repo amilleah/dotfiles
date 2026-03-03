@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+osascript -e 'tell application "System Settings" to quit'
+
+# mouse and trackpad
+defaults write com.apple.AppleMultitouchMouse "MouseButtonMode" -string "TwoButton"
+defaults write com.apple.AppleMultitouchTrackpad "TrackpadRightClick" -bool true
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse "MouseButtonMode" -string "TwoButton"
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad "TrackpadRightClick" -bool true
+
+# dock
+defaults write com.apple.dock "orientation" -string "left"
+defaults write com.apple.dock "minimize-to-application" -bool true
+defaults write com.apple.dock "show-recents" -bool false
+
+# window manager
+defaults write com.apple.WindowManager "HideDesktop" -bool true
+defaults write com.apple.WindowManager "EnableTiledWindowMargins" -bool false
+defaults write com.apple.WindowManager "AppWindowGroupingBehavior" -int 1
+defaults write com.apple.WindowManager "StageManagerHideWidgets" -bool false
+defaults write com.apple.WindowManager "StandardHideWidgets" -bool false
+
+# finder
+defaults write com.apple.finder "ShowExternalHardDrivesOnDesktop" -bool true
+defaults write com.apple.finder "ShowHardDrivesOnDesktop" -bool false
+defaults write com.apple.finder "ShowRemovableMediaOnDesktop" -bool true
+defaults write com.apple.finder "FXPreferredViewStyle" -string "Nlsv"
+defaults write com.apple.finder "ArrangeBy" -string "name"
+
+# screenshots
+defaults write com.apple.screencapture "style" -string "window"
+defaults write com.apple.screencapture "target" -string "clipboard"
+defaults write com.apple.screencapture "video" -bool false
+
+# clipboard
+defaults write com.apple.Spotlight "PasteboardHistoryEnabled" -bool true
+defaults write com.apple.Spotlight "PasteboardHistoryTimeout" -int 604800
+
+# clock
+defaults write com.apple.menuextra.clock "ShowAMPM" -bool true
+defaults write com.apple.menuextra.clock "ShowDayOfWeek" -bool true
+defaults write com.apple.menuextra.clock "ShowDate" -bool false
+
+# privacy
+defaults write com.apple.AdLib "allowApplePersonalizedAdvertising" -bool false
+
+for app in "Dock" "Finder" "SystemUIServer" "Terminal" "Siri"; do
+  killall "$app" > /dev/null 2>&1
+done
