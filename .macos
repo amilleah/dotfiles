@@ -2,6 +2,10 @@
 
 osascript -e 'tell application "System Settings" to quit'
 
+# directories
+mkdir -p "$HOME/Projects"
+mkdir -p "$HOME/Server"
+
 # mouse and trackpad
 defaults write com.apple.AppleMultitouchMouse "MouseButtonMode" -string "TwoButton"
 defaults write com.apple.AppleMultitouchTrackpad "TrackpadRightClick" -bool true
@@ -12,13 +16,14 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad "TrackpadRight
 defaults write com.apple.dock "orientation" -string "left"
 defaults write com.apple.dock "minimize-to-application" -bool true
 defaults write com.apple.dock "show-recents" -bool false
+defaults write com.apple.dock "autohide" -bool false
 
 # window manager
 defaults write com.apple.WindowManager "HideDesktop" -bool true
 defaults write com.apple.WindowManager "EnableTiledWindowMargins" -bool false
 defaults write com.apple.WindowManager "AppWindowGroupingBehavior" -int 1
-defaults write com.apple.WindowManager "StageManagerHideWidgets" -bool false
-defaults write com.apple.WindowManager "StandardHideWidgets" -bool false
+defaults write com.apple.WindowManager "StageManagerHideWidgets" -bool true
+defaults write com.apple.WindowManager "StandardHideWidgets" -bool true
 
 # finder
 defaults write com.apple.finder "ShowExternalHardDrivesOnDesktop" -bool true
@@ -26,23 +31,43 @@ defaults write com.apple.finder "ShowHardDrivesOnDesktop" -bool false
 defaults write com.apple.finder "ShowRemovableMediaOnDesktop" -bool true
 defaults write com.apple.finder "FXPreferredViewStyle" -string "Nlsv"
 defaults write com.apple.finder "ArrangeBy" -string "name"
+defaults write com.apple.finder "AppleShowAllExtensions" -bool true
 
 # screenshots
 defaults write com.apple.screencapture "style" -string "window"
 defaults write com.apple.screencapture "target" -string "clipboard"
+defaults write com.apple.screencapture "includeDate" -bool true
 defaults write com.apple.screencapture "video" -bool false
 
 # clipboard
 defaults write com.apple.Spotlight "PasteboardHistoryEnabled" -bool true
-defaults write com.apple.Spotlight "PasteboardHistoryTimeout" -int 604800
+defaults write com.apple.Spotlight "PasteboardHistoryTimeout" -int 2592000
+defaults write com.apple.Spotlight "NSAllowContinuousSpellChecking" -bool false
+defaults write NSGlobalDomain "NSAllowContinuousSpellChecking" -bool true
+defaults write com.apple.universalaccess "allowSharedPasteboard" -bool true
 
 # clock
 defaults write com.apple.menuextra.clock "ShowAMPM" -bool true
 defaults write com.apple.menuextra.clock "ShowDayOfWeek" -bool true
 defaults write com.apple.menuextra.clock "ShowDate" -bool false
 
+# keyboard
+defaults write NSGlobalDomain "com.apple.keyboard.fnState" -bool true
+
+# hot corners (disabled)
+defaults write com.apple.dock "wvous-tl-corner" -int 0
+defaults write com.apple.dock "wvous-tr-corner" -int 0
+defaults write com.apple.dock "wvous-bl-corner" -int 0
+defaults write com.apple.dock "wvous-br-corner" -int 0
+
+# messages
+defaults write com.apple.MobileSMS "PlaySounds" -bool false
+
 # privacy
 defaults write com.apple.AdLib "allowApplePersonalizedAdvertising" -bool false
+defaults write com.apple.Spotlight "UniqueDeviceDataCollectionEnabled" -bool false
+defaults write com.apple.Spotlight "ShowSiriSuggestionsInSearch" -bool false
+defaults write com.apple.Spotlight "ShowSuggestionsInSearch" -bool false
 
 for app in "Dock" "Finder" "SystemUIServer" "Terminal" "Siri"; do
   killall "$app" > /dev/null 2>&1
