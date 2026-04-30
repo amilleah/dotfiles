@@ -1,7 +1,6 @@
 brew "go"
 brew "node"
 brew "pnpm"
-cask "adobe-creative-cloud"
 cask "discord"
 cask "microsoft-excel"
 cask "microsoft-powerpoint"
