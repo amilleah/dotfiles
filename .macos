@@ -3,11 +3,6 @@ osascript -e 'tell application "System Settings" to quit'
 # directories
 mkdir -p "$HOME/Projects"
 mkdir -p "$HOME/Server"
-# mouse and trackpad
-defaults write com.apple.AppleMultitouchMouse "MouseButtonMode" -string "TwoButton"
-defaults write com.apple.AppleMultitouchTrackpad "TrackpadRightClick" -bool true
-defaults write com.apple.driver.AppleBluetoothMultitouch.mouse "MouseButtonMode" -string "TwoButton"
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad "TrackpadRightClick" -bool true
 # dock
 defaults write com.apple.dock "orientation" -string "left"
 defaults write com.apple.dock "minimize-to-application" -bool true
@@ -52,8 +47,6 @@ defaults write com.apple.dock "wvous-tl-corner" -int 0
 defaults write com.apple.dock "wvous-tr-corner" -int 0
 defaults write com.apple.dock "wvous-bl-corner" -int 0
 defaults write com.apple.dock "wvous-br-corner" -int 0
-# messages
-defaults write com.apple.MobileSMS "PlaySounds" -bool false
 # privacy
 defaults write com.apple.AdLib "allowApplePersonalizedAdvertising" -bool false
 defaults write com.apple.Spotlight "UniqueDeviceDataCollectionEnabled" -bool false
